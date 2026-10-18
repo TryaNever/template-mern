@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+build
+
+package-lock.json
+
+Front/dist
+Back/node_modules
+Front/node_modules
