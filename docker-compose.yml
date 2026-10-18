@@ -6,10 +6,15 @@ services:
       - mongo_data:/data/db
 
   mongo_compass:
-    image: mongodb/mongodb-community-server:8.0-ubi8
+    image: mongo-express:latest
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
     environment:
-      - CONN_STR=mongodb://mongo:27017/
-    command: '/bin/bash -c "sleep 5; mongosh $$CONN_STR --eval \"show dbs;\""'
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: "true"
+      ME_CONFIG_BASICAUTH_USERNAME: root
+      ME_CONFIG_BASICAUTH_PASSWORD: root
     depends_on:
       - mongo
   back:
