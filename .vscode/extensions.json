@@ -1,11 +1,8 @@
 {
-  "recommendations": [
-    "dbaeumer.vscode-eslint",
-    "aadityanarayan.code-snap",
-    "bradlc.vscode-tailwindcss",
-    "devsense.composer-php-vscode",
-    "ms-azuretools.vscode-containers",
-    "ms-vscode-remote.remote-containers",
-    "editorconfig.editorconfig"
-  ]
+    "recommendations": [
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig",
+        "ms-azuretools.vscode-docker"
+    ]
 }

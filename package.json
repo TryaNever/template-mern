@@ -1,10 +1,14 @@
 {
-  "devDependencies": {
-    "@commitlint/cli": "^21.2.1",
-    "@commitlint/config-conventional": "^21.2.0",
-    "husky": "^9.1.7"
-  },
-  "scripts": {
-    "prepare": "husky"
-  }
+    "devDependencies": {
+        "@commitlint/cli": "^21.2.1",
+        "@commitlint/config-conventional": "^21.2.0",
+        "husky": "^9.1.7",
+        "prettier": "^3.6.2"
+    },
+    "scripts": {
+        "prepare": "husky",
+        "lint": "prettier --check . && npm run lint --prefix backend",
+        "format": "prettier --write .",
+        "build": "npm run build --prefix frontend"
+    }
 }

@@ -7,10 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-/node_modules
+node_modules/
 dist/
 dist-ssr/
 *.local
+.env
+.env.*
+!.env.example
+!**/.env.example
+coverage/
 
 # Editor directories and files
 .vscode/*
@@ -23,8 +28,5 @@ dist-ssr/
 *.njsproj
 *.sln
 *.sw?
-*/*.env
-
-# Dependency directories
 *.vite
-/mongo_data/
+mongo_data/
