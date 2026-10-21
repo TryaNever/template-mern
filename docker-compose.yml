@@ -1,47 +1,35 @@
 services:
-  mongo:
-    image: mongo:7
-    restart: unless-stopped
-    volumes:
-      - mongo_data:/data/db
+    mongo:
+        image: mongo:7
+        restart: unless-stopped
+        volumes:
+            - mongo_data:/data/db
 
-  mongo_compass:
-    image: mongo-express:latest
-    restart: unless-stopped
-    ports:
-      - "8081:8081"
-    environment:
-      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
-      ME_CONFIG_BASICAUTH_ENABLED: "true"
-      ME_CONFIG_BASICAUTH_USERNAME: root
-      ME_CONFIG_BASICAUTH_PASSWORD: root
-    depends_on:
-      - mongo
-  back:
-    build: ./back
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    env_file:
-      - ./back/.env
-    environment:
-      MONGO_URL: mongodb://mongo:27017/template-mern
-    volumes:
-      - ./back:/app
-      - /app/node_modules
-    depends_on:
-      - mongo
+    backend:
+        build: ./backend
+        restart: unless-stopped
+        ports:
+            - '3000:3000'
+        env_file:
+            - ./backend/.env
+        environment:
+            MONGO_DB_URL: mongodb://mongo:27017/template-mern
+        volumes:
+            - ./backend:/app
+            - /app/node_modules
+        depends_on:
+            - mongo
 
-  front:
-    build: ./front
-    restart: unless-stopped
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./front:/app
-      - /app/node_modules
-    depends_on:
-      - back
+    frontend:
+        build: ./frontend
+        restart: unless-stopped
+        ports:
+            - '5173:5173'
+        volumes:
+            - ./frontend:/app
+            - /app/node_modules
+        depends_on:
+            - backend
 
 volumes:
-  mongo_data:
+    mongo_data:

@@ -1,19 +1,25 @@
-lint:
-	cd Front && npm run lint
+.PHONY: init dev build lint format clean stop
 
-lint-fix:
-	cd Front && npm run lint -- --fix
+init:
+	node scripts/init.mjs
+	npm ci
+	npm ci --prefix backend
+	npm ci --prefix frontend
 
-prettier:
-	cd Front && npx prettier --write .
-
-lint-prettier: lint lint-fix prettier
-
-dev-start:
+dev:
 	docker compose up -d --build
 
-clear:
-	docker compose down -v
-	docker system prune -f
-	docker volume prune -f
-	docker network prune -f
+build:
+	npm run build --prefix frontend
+
+lint:
+	npm run lint
+
+format:
+	npm run format
+
+clean:
+	rm -rf frontend/dist backend/coverage
+
+stop:
+	docker compose down
